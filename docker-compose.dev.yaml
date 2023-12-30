@@ -2,7 +2,7 @@ version: "3.8"
 services:
   postgres_db:
     image: postgres:14.1-alpine
-    container_name: railway_postgres_db
+    container_name: modelers_rift_postgres_db
     restart: always
     environment:
       - POSTGRES_USER=postgres
@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - railway-db:/var/lib/postgresql/data
+      - modelers-rift-db:/var/lib/postgresql/data
 
 volumes:
-  railway-db:
+  modelers-rift-db:
