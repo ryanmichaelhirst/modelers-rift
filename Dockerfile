@@ -15,7 +15,7 @@ FROM base as deps
 
 WORKDIR /myapp
 
-ADD package.json pnpm-lock.yaml ./
+ADD package.json pnpm-lock.yaml pnpm-lock.yaml ./
 # Instruct pnpm to install all dependencies, regardless of NODE_ENV
 RUN pnpm i --frozen-lockfile --prod=false
 
@@ -25,7 +25,7 @@ FROM base as production-deps
 WORKDIR /myapp
 
 COPY --from=deps /myapp/node_modules /myapp/node_modules
-ADD package.json pnpm-lock.yaml ./
+ADD package.json pnpm-lock.yaml pnpm-lock.yaml ./
 RUN pnpm prune --prod
 
 # Build the app
@@ -81,7 +81,7 @@ CMD ["pnpm", "start"]
 
 # WORKDIR /myapp
 
-# ADD package.json .npmrc ./
+# ADD package.json pnpm-lock.yaml .npmrc ./
 # RUN npm install --include=dev
 
 # # Setup production node_modules
@@ -90,7 +90,7 @@ CMD ["pnpm", "start"]
 # WORKDIR /myapp
 
 # COPY --from=deps /myapp/node_modules /myapp/node_modules
-# ADD package.json .npmrc ./
+# ADD package.json pnpm-lock.yaml .npmrc ./
 # RUN npm prune --production
 
 # # Build the app

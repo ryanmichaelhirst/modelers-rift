@@ -1,5 +1,5 @@
 {
-  "name": "modelers-rift",
+  "name": "modelers-rift-958c",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -15,7 +15,6 @@
     "deploy:db": "prisma migrate deploy",
     "docker": "docker-compose -f docker-compose.dev.yaml up -d",
     "format": "prettier --write .",
-    "format:repo": "npm run format && npm run lint -- --fix",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "setup": "prisma generate && prisma migrate deploy && prisma db seed",
     "start": "cross-env NODE_ENV=production node ./build/server.js",
