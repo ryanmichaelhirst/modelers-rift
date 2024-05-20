@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -10,11 +11,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Replace this `Example` model with your own schema
-model Example {
-  id        Int @id @default(autoincrement())
-  content   String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
-  deletedAt DateTime?
+model Character {
+  id     Int    @id @default(autoincrement())
+  name   String @unique
+  displayName String?
+  type   String
+  assets Asset[]
+  imageUrl String?
+}
+
+model Asset {
+  id           Int      @id @default(autoincrement())
+  character    Character @relation(fields: [characterId], references: [id])
+  characterId  Int
+  type         String
+  name         String
+  skin         String
+  uri          String @unique
+  url          String?
+  s3_url       String?
+  duration     Float?
 }
